@@ -50,7 +50,7 @@ class AIPlayer:
         self.__player_no = player_no
         self.__opponent = opponent
         self.__curr_player = player_no
-        self.depth = 1
+        self.depth = 3
         self.players = [self.__opponent, self.__player_no]
         self._recurse_count = 0
         self._total_nodes_explored = 0
@@ -105,9 +105,9 @@ class AIPlayer:
             for child in children:
                 eval = self.minimax(child, depth - 1, False, alpha, beta)
                 max_eval = max(max_eval, eval)
-                # alpha = max(alpha, eval)
-                # if beta <= alpha:
-                #     break  # Beta cut-off
+                alpha = max(alpha, eval)
+                if beta <= alpha:
+                    break  # Beta cut-off
             return max_eval
         else:
             min_eval = math.inf
@@ -115,9 +115,9 @@ class AIPlayer:
             for child in children:
                 eval = self.minimax(child, depth - 1, True, alpha, beta)
                 min_eval = min(min_eval, eval)
-                # beta = min(beta, eval)
-                # if beta <= alpha:
-                #     break  # Alpha cut-off
+                beta = min(beta, eval)
+                if beta <= alpha:
+                    break  # Alpha cut-off
             return min_eval
 
     def evaluate_board(self, board: IBoard) -> float:
