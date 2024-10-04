@@ -1,4 +1,8 @@
-# TODO
+# Connect 4 Game to illustrate minimax algorithm
+
+This game is written in Python and Pygame.  It's a one-player game against a computer.
+
+## TODO
 
 ## Users can see the following information as the game is played
 
